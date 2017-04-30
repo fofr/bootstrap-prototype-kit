@@ -23,21 +23,27 @@ module.exports = function(grunt){
     // Copies templates and assets from external modules and dirs
     sync: {
       assets: {
-        files: [{
-          expand: true,
-          cwd: 'app/assets/',
-          src: ['**/*', '!sass/**'],
-          dest: 'public/'
-        }],
+        files: [
+          {
+            expand: true,
+            cwd: 'app/assets/',
+            src: ['**/*', '!sass/**'],
+            dest: 'public/'
+          },
+          {
+            cwd: 'node_modules/bootstrap-sass/assets/javascripts/',
+            src: 'bootstrap.min.js',
+            dest: 'public/javascripts'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/bootstrap-sass/assets/fonts/',
+            src: ['**/*'],
+            dest: 'public/fonts'
+          }
+        ],
         ignoreInDest: "**/stylesheets/**",
         updateAndDelete: true
-      },
-      bootstrap: {
-        files: [{
-          cwd: 'node_modules/bootstrap-sass/assets/javascripts/',
-          src: 'bootstrap.min.js',
-          dest: 'public/javascripts'
-        }]
       }
     },
 
